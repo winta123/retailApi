@@ -1,0 +1,141 @@
+#%RAML 1.0
+baseUri: https://anypoint.mulesoft.com/mocking/api/v1/links/3030e5e4-be6c-449c-811b-1678472127c0/ # 
+title: retail
+traits:
+  responseMessage:
+    responses:
+      400:
+        body:
+          application/json:
+            example:
+              {"message":"<<bad request>>"}
+types:
+  products: !include datatype/Products.raml
+  bills: !include datatype/Bills.raml
+  product catagory: !include datatype/productcatagory.raml
+/products: 
+  get:
+    responses: 
+     200:
+      body:
+        application/json:
+         type: products
+         examples:
+            !include examples/products.raml
+  post:
+    responses: 
+     200:
+      body:
+        application/json:
+         type: products
+         examples:
+            !include examples/products.raml
+  /{id}:
+    get:
+      responses:
+       200:
+        body:
+         application/json:
+          example:
+            {"message":"success"}
+    put:
+      description: update by id
+      responses: 
+       200:
+        body:
+         application/json:
+          examples: {"message":"success"}
+    delete:
+     body: 
+      application/json:
+    is: [responseMessage]
+/bills:
+  get:
+    responses:
+       200:
+        body:
+         application/json:
+          type: bills
+          examples:
+            !include examples/Bills.raml
+  /{id}:
+    get:
+      responses:
+       200:
+        body:
+         application/json:
+          type: products
+          examples:
+            !include examples/products.raml
+    post:
+      responses: 
+       200:
+        body:
+         application/json:
+          examples: {"message":"success"}
+      body: 
+       application/json:
+    is: [responseMessage]
+    put:
+      responses:
+       200:
+        body:
+         application/json:
+          example: {"message":"success"}
+      body: 
+       application/json:
+      is: [responseMessage]
+    delete:
+      responses:
+       200:
+        body:
+         application/json:
+          example: {"message":"success"}
+      body: 
+       application/json:
+      is: [responseMessage] 
+/productcatagory:
+  get:
+    responses:
+       200:
+        body:
+         application/json:
+          example: {"message":"success"}
+  /{id}:
+    get:
+     responses:
+       200:
+        body:
+         application/json:
+          example: {"message":"success"}
+    put:
+      responses:
+       200:
+        body:
+         application/json:
+          examples: {"message":"success"}
+      body: 
+       application/json:
+      is: [responseMessage]
+    delete:
+      responses:
+       200:
+        body:
+         application/json:
+          example: {"message":"success"}
+  post:
+    responses: 
+     200:
+      body:
+        application/json:
+          example: {"message":"success"}
+
+  
+
+  
+    
+
+
+  
+    
+
